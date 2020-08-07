@@ -18,7 +18,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost:5432/load_scores'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://dekcuboaomhapq:a92719d4e48a83565774ead93996355ddbd6aadd2169f0a8b66d39e38aafe56d@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9eelsnjmt7jvt'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://awkeaaxwfurogd:78b3ee4dbcf33ed3aa3fef15463d65302fcbcbc8986b3c9d901e9b55ae4bf04f@ec2-52-200-48-116.compute-1.amazonaws.com:5432/de6l1plpacegsk'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
