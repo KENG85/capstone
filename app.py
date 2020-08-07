@@ -98,7 +98,8 @@ def submit():
             
         return render_template('index.html', message='success' )
     return render_template('index.html', message='form submitted')
-        
+
+
 @app.route("/api/red-flags")
 def RedFlags():
     #last_week = dt.date(db.timestamp) - dt.timedelta(days=7)
