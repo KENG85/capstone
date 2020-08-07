@@ -15,7 +15,7 @@ if ENV == 'dev':
     app.debug = True  
 
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kateengard3666980!@localhost:5432/load_scores'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost:5432/load_scores'
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://dekcuboaomhapq:a92719d4e48a83565774ead93996355ddbd6aadd2169f0a8b66d39e38aafe56d@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9eelsnjmt7jvt'
