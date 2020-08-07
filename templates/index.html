@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Please complete your player preparedness scores</title>
+  </head>
+  <body>
+    <div class="container">
+      <img src="../static/logo.png" alt="Lexus" class="logo" />
+      {% if message %}
+      <p class="message">{{ message | safe }}</p>
+      {% endif %}
+      <form action="/submit" method="POST">
+        <div class="form-group">
+            <h3>Date </h3>
+           <input 
+              type="datetime-local"
+              name="timestamp"
+              />
+        </div>
+        <div class="form-group">
+            <h3>Player ID </h3>
+              <p>PHONE NUMBER WITH AREA CODE. NO SPACES. 4801239876</p>
+              <input
+                type="number"
+                name="player"
+                placeholder="4801239876"
+              />
+        </div>
+        <!-- <div class="form-group">
+          <h3>Player ID </h3>
+            <p>jump score</p>
+            <input
+              type="number"
+              name="jump_score"
+              
+            />
+      </div> -->
+        <div class="form-group">
+          <h3>Sport</h3>
+          <select name="sport">
+            <option value="None">Select Sport</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Football">Football</option>
+            <option value="Roller_Derby">Roller Derby</option>
+            <option value="Fight_Sports">Fight Sports</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h3>Organization</h3>
+          <select name="org">
+            <option value="None">Select Your Organization</option>
+            <option value="AZRD">AZRD</option>
+            <option value="Mesa">Mesa High</option>
+            <option value="ENG">ENG/Unattached</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h3>Position</h3>
+          <select name="position">
+            <option value="None">Select Your Position</option>
+            <option value="OL">FB: OL</option>
+            <option value="DL">FB: DL</option>
+            <option value="RB">FB: RB</option>
+            <option value="LB">FB: LB</option>
+            <option value="WR">FB: Receiver</option>
+            <option value="DB">FB: DBs</option>
+            <option value="blocker">RD: Blocker </option>
+            <option value="pivot">RD: Pivot </option>
+            <option value="jammer">RD: Jammer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h3>Nutrition in the last 24-hrs</h3>
+          <input type="radio" name="nutrition" value="1" /> 1
+          <input type="radio" name="nutrition" value="2" /> 2
+          <input type="radio" name="nutrition" value="3" /> 3
+          <input type="radio" name="nutrition" value="4" /> 4
+          <input type="radio" name="nutrition" value="5" /> 5
+          <input type="radio" name="nutrition" value="6" /> 6
+          <input type="radio" name="nutrition" value="7" /> 7
+          <input type="radio" name="nutrition" value="8" /> 8
+          <input type="radio" name="nutrition" value="9" /> 9
+          <input type="radio" name="nutrition" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Hours of Sleep</h3>
+          <input type="radio" name="sleep" value="1" /> 1
+          <input type="radio" name="sleep" value="2" /> 2
+          <input type="radio" name="sleep" value="3" /> 3
+          <input type="radio" name="sleep" value="4" /> 4
+          <input type="radio" name="sleep" value="5" /> 5
+          <input type="radio" name="sleep" value="6" /> 6
+          <input type="radio" name="sleep" value="7" /> 7
+          <input type="radio" name="sleep" value="8" /> 8
+          <input type="radio" name="sleep" value="9" /> 9
+          <input type="radio" name="sleep" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Overall Motivation</h3>
+          <input type="radio" name="motivation" value="1" /> 1
+          <input type="radio" name="motivation" value="2" /> 2
+          <input type="radio" name="motivation" value="3" /> 3
+          <input type="radio" name="motivation" value="4" /> 4
+          <input type="radio" name="motivation" value="5" /> 5
+          <input type="radio" name="motivation" value="6" /> 6
+          <input type="radio" name="motivation" value="7" /> 7
+          <input type="radio" name="motivation" value="8" /> 8
+          <input type="radio" name="motivation" value="9" /> 9
+          <input type="radio" name="motivation" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Whole-body Fatigue</h3>
+          <input type="radio" name="fatigue" value="1" /> 1
+          <input type="radio" name="fatigue" value="2" /> 2
+          <input type="radio" name="fatigue" value="3" /> 3
+          <input type="radio" name="fatigue" value="4" /> 4
+          <input type="radio" name="fatigue" value="5" /> 5
+          <input type="radio" name="fatigue" value="6" /> 6
+          <input type="radio" name="fatigue" value="7" /> 7
+          <input type="radio" name="fatigue" value="8" /> 8
+          <input type="radio" name="fatigue" value="9" /> 9
+          <input type="radio" name="fatigue" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Life Stress</h3>
+          <input type="radio" name="stress" value="1" /> 1
+          <input type="radio" name="stress" value="2" /> 2
+          <input type="radio" name="stress" value="3" /> 3
+          <input type="radio" name="stress" value="4" /> 4
+          <input type="radio" name="stress" value="5" /> 5
+          <input type="radio" name="stress" value="6" /> 6
+          <input type="radio" name="stress" value="7" /> 7
+          <input type="radio" name="stress" value="8" /> 8
+          <input type="radio" name="stress" value="9" /> 9
+          <input type="radio" name="stress" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Total Session RPE </h3>
+          <input type="radio" name="RPE" value="1" /> 1
+          <input type="radio" name="RPE" value="2" /> 2
+          <input type="radio" name="RPE" value="3" /> 3
+          <input type="radio" name="RPE" value="4" /> 4
+          <input type="radio" name="RPE" value="5" /> 5
+          <input type="radio" name="RPE" value="6" /> 6
+          <input type="radio" name="RPE" value="7" /> 7
+          <input type="radio" name="RPE" value="8" /> 8
+          <input type="radio" name="RPE" value="9" /> 9
+          <input type="radio" name="RPE" value="10" checked /> 10
+        </div>
+        <div class="form-group">
+          <h3>Sentiment Tweet</h3>
+        
+          <textarea
+            name="sentiment_tweet"
+            id=""
+            maxlength="147"
+            cols="30"
+            rows="5"
+            placeholder="If you had to summarize your physical, mental, and emotional wellness in 147 characters or less, what would that be?"
+          ></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn" />
+      </form>
+    </div>
+  </body>
+</html>
