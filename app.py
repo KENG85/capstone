@@ -1,19 +1,24 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
+import datetime as dt
+import numpy as np
+import sqlalchemy
+from sqlalchemy import func
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 ENV = 'dev'
 
 if ENV == 'dev':
-    app.debug = True  #postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
+    app.debug = True  
 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kateengard3666980!@localhost:5432/load_scores'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://dekcuboaomhapq:a92719d4e48a83565774ead93996355ddbd6aadd2169f0a8b66d39e38aafe56d@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9eelsnjmt7jvt'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -57,6 +62,7 @@ class Feedback(db.Model):
         #self.value = value
         self.tweet = tweet
 
+    #load_score = Base.classes.load_score
 
 @app.route('/')
 def index():
@@ -93,7 +99,22 @@ def submit():
         return render_template('index.html', message='success' )
     return render_template('index.html', message='form submitted')
         
+@app.route("/api/red-flags")
+def RedFlags():
+    #last_week = dt.date(db.timestamp) - dt.timedelta(days=7)
+    sel = [Feedback.timestamp, Feedback.player, Feedback.nutrition, Feedback.sleep, Feedback.motivation, Feedback.fatigue, Feedback.stress, Feedback.RPE]
+    #plus = [func.avg(Feedback.nutrition, Feedback.sleep, Feedback.motivation) < 8]
     
+    #minus = [func.avg(Feedback.fatigue, Feedback.stress, Feedback.RPE) > 5]
+    #score = [func.diff(plus - minus)
+    results = db.session.query(*sel).filter(Feedback.fatigue and Feedback.stress >=5).filter(Feedback.RPE > 7).all()
+    #.filter(Feedback.nutrition <= 8 and Feedback.sleep <= 8).all()
+    #results = db.session.query(load_score.fatigue >=4) 
+        #filter(db.timestamp > last_week).all()
+    #flags = list(np.ravel(results))
+
+    return jsonify(results)
+
 
 if __name__ == '__main__':
     app.run()
