@@ -9,7 +9,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True  
@@ -18,7 +18,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost:5432/load_scores'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://awkeaaxwfurogd:78b3ee4dbcf33ed3aa3fef15463d65302fcbcbc8986b3c9d901e9b55ae4bf04f@ec2-52-200-48-116.compute-1.amazonaws.com:5432/de6l1plpacegsk'
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -116,6 +116,21 @@ def RedFlags():
 
     return jsonify(results)
 
+@app.route("/api/all")
+def allData():
+    sel = [Feedback.timestamp, Feedback.player, Feedback.nutrition, Feedback.sleep, Feedback.motivation, Feedback.fatigue, Feedback.stress, Feedback.RPE, Feedback.tweet]
+    
+    results = db.session.query(*sel).all()
+    
+    return jsonify(results)
+
+@app.route("/api/tweet")
+def moodytweet():
+    sel = [Feedback.timestamp, Feedback.player, Feedback.tweet]
+
+    tweets = db.session.query(*sel).all()
+
+    return jsonify(tweets)
 
 if __name__ == '__main__':
     app.run()
